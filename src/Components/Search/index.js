@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles.js";
 import InputBase from "@material-ui/core/InputBase";
-import logo from "../../assets/silhueta.svg";
-import simbolo from "../../assets/simbolo.svg";
+import logo from "../../assets/logo.svg";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import IconButton from "@material-ui/core/IconButton";
+import SearchIcon from "@material-ui/icons/Search";
 class Search extends React.Component {
   state = { searchText: "" };
   // componentDidMount() {
@@ -26,28 +28,28 @@ class Search extends React.Component {
       >
         <div className={classes.row}>
           {this.state.searchText.length === 0 && (
-            <img className={classes.logoImg} src={logo} />
+            <img alt="logo" className={classes.logoImg} src={logo} />
           )}
           <div className={classes.paper}>
             <InputBase
+              autoComplete="pesquisaSigaADica"
               className={classes.textField}
               id="outlined-name"
               placeholder="Pesquise no Siga a Dica"
               variant="outlined"
-              fullWidth
               autoFocus
               value={this.state.searchText}
               onChange={this.changeStateText("searchText")}
-              // endAdornment={
-              //   <InputAdornment position="end">
-              //     <IconButton
-              //       aria-label="Toggle password visibility"
-              //       //   onClick={this.handleClickShowPassword}
-              //     >
-              //       <SearchIcon />
-              //     </IconButton>
-              //   </InputAdornment>
-              // }
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="Toggle password visibility"
+                    //   onClick={this.handleClickShowPassword}
+                  >
+                    <SearchIcon fontSize="small" style={{ color: "white" }} />
+                  </IconButton>
+                </InputAdornment>
+              }
             />
           </div>
         </div>
