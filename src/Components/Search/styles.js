@@ -13,15 +13,15 @@ export default theme => {
     logoImg: {
       minWidth: 320,
       // opacity: 0.6,
-      width: "80%",
+      width: "100%",
       maxWidth: 500,
       margin: "auto",
       padding: 20,
       transitionDuration: 300
     },
     paper: {
-      width: "80%",
-      maxWidth: 500,
+      width: "100%",
+      maxWidth: 600,
       margin: "auto",
       minWidth: 320,
       padding: 6
