@@ -5,15 +5,15 @@ export default createMuiTheme({
     common: { black: "rgba(13, 13, 13, 1)", white: "#fff" },
     background: { paper: "rgba(255, 255, 255, 1)", default: "#fafafa" },
     primary: {
-      light: "rgba(0, 150, 219, 1)",
-      main: "rgba(69, 59, 181, 1)",
-      dark: "rgba(57, 50, 133, 1)",
+      light: "rgba(0, 154, 214, 1)",
+      main: "rgba(0, 99, 172, 1)",
+      dark: "rgba(0, 70, 122, 1)",
       contrastText: "#fff"
     },
     secondary: {
-      light: "rgba(170, 224, 29, 1)",
-      main: "rgba(143, 184, 37, 1)",
-      dark: "rgba(118, 144, 51, 1)",
+      light: "rgba(91, 240, 103, 1)",
+      main: "rgba(0, 176, 55, 1)",
+      dark: "rgba(0, 143, 60, 1)",
       contrastText: "#fff"
     },
     error: {
