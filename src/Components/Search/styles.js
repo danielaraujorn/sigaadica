@@ -7,18 +7,24 @@ export default theme => {
       }, ${theme.palette.primary.main})`,
       display: "flex",
       alignItems: "center",
-      transitionDuration: 500
+      transitionDuration: 300
+    },
+    row: { display: "flex", flexFlow: "column", width: "100%" },
+    logoImg: {
+      opacity: 0.6,
+      width: 250,
+      margin: "15px auto",
+      transitionDuration: 300
     },
     paper: {
-      maxWidth: 600,
-      flex: 1,
-      margin: "6px auto"
-    },
-    textField: {
-      color: theme.palette.primary.contrastText,
-      padding: "6px 10px",
+      width: 280,
+      padding: "6px 15px",
+      margin: "auto",
       backgroundColor: "rgba(255,255,255,0.12)",
       borderRadius: theme.shape.borderRadius
+    },
+    textField: {
+      color: theme.palette.primary.contrastText
     }
   };
 };
