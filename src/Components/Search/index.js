@@ -8,17 +8,25 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import queryString from "query-string";
+// import { request } from "../../utils";
+// import { disciplinasRota } from "../../config";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as actions from "./actions";
+import response from "./results";
+const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapStateToProps = store => ({
+  results: store.results
+});
+
 class Search extends React.Component {
   state = { searchText: "", sendTimeout: null };
   componentDidMount() {
-    // setTimeout(() => this.setState({ search: true }), 2000);
     const { text } = queryString.parse(this.props.history.location.search);
     if (typeof text === "string") {
       this.setState({ searchText: text });
     }
   }
-
-  // changeState = name => value => this.setState({ [name]: value });
   changeStateText = event => {
     clearTimeout(this.state.sendTimeout);
     this.setState({
@@ -35,18 +43,22 @@ class Search extends React.Component {
         ? "?text=" + this.state.searchText
         : ""
     });
+    this.props.saveResults(response.results);
+    // request(disciplinasRota + "/?search=" + this.state.searchText).then(
+    //   response => console.log(response)
+    // );
   };
   render() {
     const { classes, history } = this.props;
+    const bigSize =
+      history.location.pathname === "/" || !this.props.results.length;
     return (
       <div
         className={classes.container}
-        style={{ height: history.location.pathname === "/" ? "100vh" : 56 }}
+        style={{ height: bigSize ? "100vh" : 56 }}
       >
         <div className={classes.row}>
-          {history.location.pathname === "/" && (
-            <img alt="logo" className={classes.logoImg} src={logo} />
-          )}
+          {bigSize && <img alt="logo" className={classes.logoImg} src={logo} />}
           <div className={classes.paper}>
             <form onSubmit={this.submit}>
               <InputBase
@@ -79,7 +91,12 @@ class Search extends React.Component {
 }
 Search.propTypes = {
   classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
+  results: PropTypes.array.isRequired,
+  saveResults: PropTypes.func.isRequired
 };
 
-export default withStyles(styles)(Search);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Search));

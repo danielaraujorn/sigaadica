@@ -2,9 +2,9 @@ export default theme => {
   console.log(theme);
   return {
     container: {
-      // backgroundImage: `linear-gradient(to right,${
-      //   theme.palette.primary.light
-      // }, ${theme.palette.primary.main})`,
+      backgroundImage: `linear-gradient(to bottom,#fffd, transparent)`,
+      width: "100%",
+      position: "fixed",
       display: "flex",
       alignItems: "center",
       transitionDuration: 300
@@ -13,7 +13,7 @@ export default theme => {
     logoImg: {
       minWidth: 320,
       // opacity: 0.6,
-      width: "100%",
+      width: "90%",
       maxWidth: 500,
       margin: "auto",
       padding: 20,

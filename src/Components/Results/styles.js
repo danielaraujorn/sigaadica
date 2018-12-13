@@ -1,4 +1,5 @@
 export default theme => ({
+  paddingSearch: { paddingTop: 56 },
   container: {
     padding: "3px 6px",
     width: "100%",
