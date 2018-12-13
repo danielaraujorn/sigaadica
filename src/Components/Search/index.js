@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles.js";
 import InputBase from "@material-ui/core/InputBase";
 import logo from "../../assets/logo.svg";
+import simbolo from "../../assets/simbolo-silhueta.svg";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
@@ -70,6 +71,15 @@ class Search extends React.Component {
                 autoFocus
                 value={this.state.searchText}
                 onChange={this.changeStateText}
+                startAdornment={
+                  <InputAdornment position="end">
+                    <img
+                      alt="simbolo"
+                      className={classes.simbolo}
+                      src={simbolo}
+                    />
+                  </InputAdornment>
+                }
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton

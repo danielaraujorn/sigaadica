@@ -19,6 +19,7 @@ export default theme => {
       padding: 20,
       transitionDuration: 300
     },
+    simbolo: { height: 30, margin: "7px 10px 7px 7px" },
     paper: {
       width: "100%",
       maxWidth: 600,
@@ -34,7 +35,7 @@ export default theme => {
         theme.palette.primary.dark
       }, ${theme.palette.primary.main})`,
       borderRadius: theme.shape.borderRadius,
-      padding: "6px 0 6px 15px"
+      padding: "6px 0"
     }
   };
 };
