@@ -1,3 +1,3 @@
-export const HOST = "http://42c5e133.ngrok.io";
+export const HOST = "http://159.89.186.230";
 
 export const disciplinasRota = "/disciplinas";

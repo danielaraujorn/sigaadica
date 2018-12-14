@@ -16,6 +16,7 @@ export default theme => ({
     fontWeight: 500
   },
   subTitle: {
+    color: "#888",
     fontSize: 12,
     fontWeight: 200
   }

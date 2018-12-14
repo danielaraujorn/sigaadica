@@ -9,12 +9,12 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
 import queryString from "query-string";
-// import { request } from "../../utils";
-// import { disciplinasRota } from "../../config";
+import { request } from "../../utils";
+import { disciplinasRota } from "../../config";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "./actions";
-import response from "./results";
+// import response from "./results";
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const mapStateToProps = store => ({
   results: store.results
@@ -44,10 +44,10 @@ class Search extends React.Component {
         ? "?text=" + this.state.searchText
         : ""
     });
-    this.props.saveResults(response.results);
-    // request(disciplinasRota + "/?search=" + this.state.searchText).then(
-    //   response => console.log(response)
-    // );
+    // this.props.saveResults(response.results);
+    request(disciplinasRota + "/?search=" + this.state.searchText).then(
+      response => console.log(response)
+    );
   };
   render() {
     const { classes, history } = this.props;
@@ -72,7 +72,7 @@ class Search extends React.Component {
                 value={this.state.searchText}
                 onChange={this.changeStateText}
                 startAdornment={
-                  <InputAdornment position="end">
+                  <InputAdornment position="start">
                     <img
                       alt="simbolo"
                       className={classes.simbolo}
