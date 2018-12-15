@@ -28,7 +28,7 @@ class Results extends React.Component {
     return (
       <div className={classes.paddingSearch}>
         {this.props.results.map(item => (
-          <div key={item.id_componente} className={classes.container}>
+          <div key={item.pk} className={classes.container}>
             <div className={classes.paper}>
               <Typography className={classes.title}>{item.nome}</Typography>
               <Typography className={classes.subTitle}>

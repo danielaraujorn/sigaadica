@@ -14,7 +14,7 @@ export default theme => {
       minWidth: 320,
       // opacity: 0.6,
       width: "90%",
-      maxWidth: 500,
+      maxWidth: 450,
       margin: "auto",
       padding: 20,
       transitionDuration: 300
@@ -27,15 +27,22 @@ export default theme => {
       minWidth: 320,
       padding: 6
     },
+    form: {
+      backgroundImage: `linear-gradient(to left,${
+        theme.palette.primary.main
+      }, ${theme.palette.primary.light})`,
+      borderRadius: theme.shape.borderRadius,
+      padding: 2
+    },
     textField: {
       width: "100%",
-      color: theme.palette.primary.contrastText,
       // backgroundColor: "rgba(255,255,255,0.12)",
-      backgroundImage: `linear-gradient(to left,${
-        theme.palette.primary.dark
-      }, ${theme.palette.primary.main})`,
-      borderRadius: theme.shape.borderRadius,
+      backgroundColor: "white",
+      borderRadius: theme.shape.borderRadius - 1,
       padding: "6px 0"
+    },
+    searchIcon: {
+      color: theme.palette.primary.main
     }
   };
 };

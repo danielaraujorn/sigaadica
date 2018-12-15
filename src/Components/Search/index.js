@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import styles from "./styles.js";
 import InputBase from "@material-ui/core/InputBase";
 import logo from "../../assets/logo.svg";
-import simbolo from "../../assets/simbolo-silhueta.svg";
+import simbolo from "../../assets/simbolo.svg";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import SearchIcon from "@material-ui/icons/Search";
@@ -32,7 +32,8 @@ class Search extends React.Component {
     clearTimeout(this.state.sendTimeout);
     this.setState({
       searchText: event.target.value,
-      sendTimeout: setTimeout(() => this.submit(), 400)
+      sendTimeout:
+        event.target.value.length > 2 && setTimeout(() => this.submit(), 1000)
     });
   };
   submit = e => {
@@ -44,10 +45,15 @@ class Search extends React.Component {
         ? "?text=" + this.state.searchText
         : ""
     });
-    // this.props.saveResults(response.results);
-    request(disciplinasRota + "/?search=" + this.state.searchText).then(
-      response => console.log(response)
-    );
+
+    this.state.searchText.length > 0 &&
+      request(disciplinasRota + "/?search=" + this.state.searchText).then(
+        response => {
+          console.log(response.data);
+          if (response.status === 200)
+            this.props.saveResults(response.data.results);
+        }
+      );
   };
   render() {
     const { classes, history } = this.props;
@@ -61,7 +67,7 @@ class Search extends React.Component {
         <div className={classes.row}>
           {bigSize && <img alt="logo" className={classes.logoImg} src={logo} />}
           <div className={classes.paper}>
-            <form onSubmit={this.submit}>
+            <form className={classes.form} onSubmit={this.submit}>
               <InputBase
                 autoComplete="pesquisaSigaADica"
                 className={classes.textField}
@@ -87,7 +93,10 @@ class Search extends React.Component {
                       aria-label="Toggle password visibility"
                       //   onClick={this.handleClickShowPassword}
                     >
-                      <SearchIcon fontSize="small" style={{ color: "white" }} />
+                      <SearchIcon
+                        fontSize="small"
+                        className={classes.searchIcon}
+                      />
                     </IconButton>
                   </InputAdornment>
                 }
