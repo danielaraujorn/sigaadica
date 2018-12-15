@@ -1,6 +1,6 @@
 import React from "react";
-import Search from "./components/Search";
-import Results from "./components/Results";
+import Search from "./Components/Search";
+import Results from "./Components/Results";
 import { Router, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 
