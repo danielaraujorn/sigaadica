@@ -11,10 +11,12 @@ import SearchIcon from "@material-ui/icons/Search";
 import queryString from "query-string";
 import { request } from "../../utils";
 import { disciplinasRota } from "../../config";
+import rotas from "../../rotas";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "./actions";
-// import response from "./results";
+import response from "./results";
+import Button from "@material-ui/core/Button";
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const mapStateToProps = store => ({
   results: store.results
@@ -23,9 +25,9 @@ const mapStateToProps = store => ({
 class Search extends React.Component {
   state = { searchText: "", sendTimeout: null };
   componentDidMount() {
-    const { text } = queryString.parse(this.props.history.location.search);
-    if (typeof text === "string") {
-      this.setState({ searchText: text });
+    const { search } = queryString.parse(this.props.history.location.search);
+    if (typeof search === "string" && search.length > 0) {
+      this.setState({ searchText: search }, () => this.submit());
     }
   }
   changeStateText = event => {
@@ -39,26 +41,31 @@ class Search extends React.Component {
   submit = e => {
     e && e.preventDefault();
     clearTimeout(this.state.sendTimeout);
-    this.props.history.push({
-      pathname: "/search",
-      search: this.state.searchText.length
-        ? "?text=" + this.state.searchText
-        : ""
-    });
-
-    this.state.searchText.length > 0 &&
-      request(disciplinasRota + "/?search=" + this.state.searchText).then(
-        response => {
-          console.log(response.data);
-          if (response.status === 200)
-            this.props.saveResults(response.data.results);
-        }
-      );
+    if (this.state.searchText.length > 0) {
+      this.props.history.push({
+        pathname: "/",
+        search: this.state.searchText.length
+          ? "?search=" + this.state.searchText
+          : ""
+      });
+      this.props.saveResults(response.results);
+      // request(disciplinasRota + "/?search=" + this.state.searchText).then(
+      //   response => {
+      //     console.log(response.data);
+      //     if (response.status === 200)
+      //       this.props.saveResults(response.data.results);
+      //   }
+      // );
+    }
   };
   render() {
-    const { classes, history } = this.props;
-    const bigSize =
-      history.location.pathname === "/" || !this.props.results.length;
+    const { classes, history, results } = this.props;
+    const { search } = queryString.parse(this.props.history.location.search);
+    const bigSize = !(
+      results.length &&
+      typeof search === "string" &&
+      search.length > 0
+    );
     return (
       <div
         className={classes.container}
@@ -80,6 +87,10 @@ class Search extends React.Component {
                 startAdornment={
                   <InputAdornment position="start">
                     <img
+                      onClick={() => {
+                        this.props.saveResults([]);
+                        history.push("/");
+                      }}
                       alt="simbolo"
                       className={classes.simbolo}
                       src={simbolo}
@@ -89,6 +100,8 @@ class Search extends React.Component {
                 endAdornment={
                   <InputAdornment position="end">
                     <IconButton
+                      color="primary"
+                      disabled={!this.state.searchText.length}
                       type="submit"
                       aria-label="Toggle password visibility"
                       //   onClick={this.handleClickShowPassword}
@@ -102,6 +115,22 @@ class Search extends React.Component {
                 }
               />
             </form>
+            {bigSize && (
+              <div className={classes.buttons}>
+                {rotas.map(({ name, path }) => (
+                  <Button
+                    key={name}
+                    size="small"
+                    onClick={() => history.push(path)}
+                    className={classes.button}
+                    variant="outlined"
+                    color="secondary"
+                  >
+                    {name}
+                  </Button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

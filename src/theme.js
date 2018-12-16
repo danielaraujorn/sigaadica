@@ -26,10 +26,10 @@ export default createMuiTheme({
       contrastText: "#ffffff"
     },
     text: {
-      primary: "#000000de",
-      secondary: "#0000008a",
-      disabled: "#00000061",
-      hint: "#00000061"
+      primary: "rgba(0,0,0,0.87)",
+      secondary: "rgba(0,0,0,54)",
+      disabled: "rgba(0,0,0,38)",
+      hint: "rgba(0,0,0,38)"
     }
   }
 });

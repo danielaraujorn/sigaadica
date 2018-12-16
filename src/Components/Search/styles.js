@@ -9,11 +9,13 @@ export default theme => {
       alignItems: "center",
       transitionDuration: 300
     },
+    buttons: { marginTop: 14, display: "flex", justifyContent: "center" },
+    button: { marginLeft: 5, marginRight: 5 },
     row: { display: "flex", flexFlow: "column", width: "100%" },
     logoImg: {
-      minWidth: 320,
+      minWidth: 300,
       // opacity: 0.6,
-      width: "90%",
+      width: "80%",
       maxWidth: 450,
       margin: "auto",
       padding: 20,
@@ -40,9 +42,6 @@ export default theme => {
       backgroundColor: "white",
       borderRadius: theme.shape.borderRadius - 1,
       padding: "6px 0"
-    },
-    searchIcon: {
-      color: theme.palette.primary.main
     }
   };
 };
