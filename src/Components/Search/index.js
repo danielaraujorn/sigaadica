@@ -15,7 +15,7 @@ import rotas from "../../rotas";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as actions from "./actions";
-import response from "./results";
+// import response from "./results";
 import Button from "@material-ui/core/Button";
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 const mapStateToProps = store => ({
@@ -49,14 +49,14 @@ class Search extends React.Component {
           ? "?search=" + this.state.searchText
           : ""
       });
-      this.props.saveResults(response.results);
-      // request(disciplinasRota + "/?search=" + this.state.searchText).then(
-      //   response => {
-      //     console.log(response.data);
-      //     if (response.status === 200)
-      //       this.props.saveResults(response.data.results);
-      //   }
-      // );
+      // this.props.saveResults(response.results);
+      request(disciplinasRota + "/?search=" + this.state.searchText).then(
+        response => {
+          console.log(response.data);
+          if (response.status === 200)
+            this.props.saveResults(response.data.results);
+        }
+      );
     }
   };
   render() {
@@ -90,7 +90,7 @@ class Search extends React.Component {
                   <InputAdornment position="start">
                     <img
                       onClick={() => {
-                        console.log(this.searchTextField.current.focus());
+                        this.searchTextField.current.focus();
                         this.props.history.push("/");
                         this.props.saveResults([]);
                       }}
