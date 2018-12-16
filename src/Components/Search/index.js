@@ -24,6 +24,7 @@ const mapStateToProps = store => ({
 
 class Search extends React.Component {
   state = { searchText: "", sendTimeout: null };
+  searchTextField = React.createRef();
   componentDidMount() {
     const { search } = queryString.parse(this.props.history.location.search);
     if (typeof search === "string" && search.length > 0) {
@@ -76,6 +77,7 @@ class Search extends React.Component {
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={this.submit}>
               <InputBase
+                inputRef={this.searchTextField}
                 autoComplete="pesquisaSigaADica"
                 className={classes.textField}
                 id="outlined-name"
@@ -88,8 +90,9 @@ class Search extends React.Component {
                   <InputAdornment position="start">
                     <img
                       onClick={() => {
+                        console.log(this.searchTextField.current.focus());
+                        this.props.history.push("/");
                         this.props.saveResults([]);
-                        history.push("/");
                       }}
                       alt="simbolo"
                       className={classes.simbolo}

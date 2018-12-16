@@ -21,7 +21,7 @@ export default theme => {
       padding: 20,
       transitionDuration: 300
     },
-    simbolo: { height: 30, margin: "7px 0 7px 10px" },
+    simbolo: { cursor: "pointer", height: 30, margin: "7px 2px 7px 12px" },
     paper: {
       width: "100%",
       maxWidth: 600,

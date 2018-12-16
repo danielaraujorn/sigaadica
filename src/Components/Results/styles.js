@@ -8,9 +8,21 @@ export default theme => ({
     minWidth: 320
   },
   paper: {
+    display: "flex",
     padding: 10,
     backgroundImage: `linear-gradient(to left,#fafafa,#fcfcfc)`,
     borderRadius: theme.shape.borderRadius
+  },
+  leftContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  centerContent: { width: "100%" },
+  rightContent: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center"
   },
   title: {
     fontWeight: 500

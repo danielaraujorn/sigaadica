@@ -16,7 +16,7 @@ export default () => {
           render={() => (
             <>
               <Search history={history} />
-              <Results />
+              <Results history={history} />
             </>
           )}
         />
