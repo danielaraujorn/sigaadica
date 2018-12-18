@@ -1,6 +1,7 @@
 import React from "react";
 import Search from "./Components/Search";
 import Results from "./Components/Results";
+import Disciplina from "./Components/Disciplina";
 import { Router, Route } from "react-router-dom";
 import { createBrowserHistory } from "history";
 import rotas from "./rotas";
@@ -20,6 +21,7 @@ export default () => {
             </>
           )}
         />
+        <Route path="/disciplina/:id" component={Disciplina} />
         {rotas.map(({ path, component, name }) => (
           <Route key={name} exact path={path} component={component} />
         ))}
