@@ -5,6 +5,8 @@ import styles from "./styles.js";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import queryString from "query-string";
+import { Link } from "react-router-dom";
+import { disciplinaRota } from "../../config";
 // import { bindActionCreators } from "redux";
 // import * as actions from "./actions";
 // const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
@@ -32,14 +34,21 @@ class Results extends React.Component {
         <div className={classes.paddingSearch}>
           {results.map(item => (
             <div key={item.pk} className={classes.container}>
-              <div className={classes.paper}>
-                <div className={classes.centerContent}>
-                  <Typography className={classes.title}>{item.nome}</Typography>
-                  <Typography className={classes.subTitle}>
-                    {item.departamento}
-                  </Typography>
+              <Link
+                style={{ textDecoration: "none" }}
+                to={disciplinaRota + "/" + item.pk}
+              >
+                <div className={classes.paper}>
+                  <div className={classes.centerContent}>
+                    <Typography className={classes.title}>
+                      {item.nome}
+                    </Typography>
+                    <Typography className={classes.subTitle}>
+                      {item.departamento}
+                    </Typography>
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>
